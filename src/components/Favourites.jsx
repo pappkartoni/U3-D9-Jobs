@@ -14,7 +14,7 @@ const Favourites = (props) => {
           <h1>Favourites</h1>
           {favs.length
             ? favs.map((company) => (
-                    <Row className="mx-0 mt-3 p-3" style={{ border: '1px solid #00000033', borderRadius: 4 }}>
+                    <Row key={company} className="mx-0 mt-3 p-3" style={{ border: '1px solid #00000033', borderRadius: 4 }}>
                         <Col xs={9}>
                             <Link to={`/${company}`}>{company}</Link>
                         </Col>
