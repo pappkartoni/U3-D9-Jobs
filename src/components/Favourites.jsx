@@ -2,9 +2,10 @@ import { Container, Row, Col } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { BsTrash } from "react-icons/bs"
+import { removeFavouriteAction } from "../redux/actions"
 
 const Favourites = (props) => {
-    const favs = useSelector((state) => state.favs)
+    const favs = useSelector((state) => state.favs.favsList)
     const dispatch = useDispatch()
 
     return (
@@ -19,7 +20,7 @@ const Favourites = (props) => {
                             <Link to={`/${company}`}>{company}</Link>
                         </Col>
                         <Col xs={3} className="text-right">
-                            <BsTrash style={{color: "red"}} onClick={() => {dispatch({type: "REMOVE_FAVOURITE", payload: company})}}/>
+                            <BsTrash style={{color: "red"}} onClick={() => {dispatch(removeFavouriteAction(company))}}/>
                         </Col>
                     </Row>
             ))

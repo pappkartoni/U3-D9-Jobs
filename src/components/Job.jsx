@@ -2,10 +2,11 @@ import { Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux"
 import { BsStar, BsStarFill } from "react-icons/bs"
+import { setFavouriteAction, removeFavouriteAction } from '../redux/actions'
 
 const Job = ({ data }) => {
   const dispatch = useDispatch()
-  const favs = useSelector((state) => state.favs)
+  const favs = useSelector((state) => state.favs.favsList)
 
   return (
     <Row
@@ -22,8 +23,8 @@ const Job = ({ data }) => {
       </Col>
       <Col xs={1}>
           {favs.includes(data.company_name)
-          ? <BsStarFill style={{color: "gold"}} onClick={() => {dispatch({type: "REMOVE_FAVOURITE", payload: data.company_name})}}/>
-          : <BsStar style={{color: "gold"}} onClick={() => {dispatch({type: "SET_FAVOURITE", payload: data.company_name})}}/>}
+          ? <BsStarFill style={{color: "gold"}} onClick={() => {dispatch(removeFavouriteAction(data.company_name))}}/>
+          : <BsStar style={{color: "gold"}} onClick={() => {dispatch(setFavouriteAction(data.company_name))}}/>}
       </Col>
     </Row>
   )
