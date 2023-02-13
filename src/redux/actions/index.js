@@ -13,11 +13,11 @@ export const removeFavouriteAction = (company) =>  ({
 })
 
 
-export const getJobsActionAsync = (query) => {
+export const getJobsActionAsync = (query, urlParam) => {
     return async (dispatch, getState) => {
         try {
-            const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search="
-            const response = await fetch(baseEndpoint + query + '&limit=20')
+            const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?"
+            const response = await fetch(baseEndpoint + urlParam + "=" + query + '&limit=20')
             if (response.ok) {
                 const { data } = await response.json()
                 dispatch({

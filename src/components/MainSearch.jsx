@@ -9,7 +9,6 @@ const MainSearch = () => {
   const [query, setQuery] = useState('')
   const dispatch = useDispatch()
   const jobs = useSelector((state) => state.jobs.jobsList)
-  console.log("jobs are", jobs)
 
   const handleChange = (e) => {
     setQuery(e.target.value)
@@ -18,7 +17,7 @@ const MainSearch = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    dispatch(getJobsActionAsync(query))
+    dispatch(getJobsActionAsync(query, "search"))
   }
 
   return (
@@ -39,7 +38,7 @@ const MainSearch = () => {
           </Form>
         </Col>
         <Col xs={10} className="mx-auto mb-5">
-          {jobs.map((jobData) => (
+          {jobs.length > 0 && jobs.map((jobData) => (
             <Job key={jobData._id} data={jobData} />
           ))}
         </Col>

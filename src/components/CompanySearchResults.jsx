@@ -11,7 +11,7 @@ const CompanySearchResults = () => {
   const jobs = useSelector((state) => state.jobs.jobsList)
 
   useEffect(() => {
-    dispatch(getJobsActionAsync(params.companyName))
+    dispatch(getJobsActionAsync(params.companyName, "company"))
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
