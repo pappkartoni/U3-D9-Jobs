@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Container, Row, Col, Form, Spinner, Alert } from 'react-bootstrap'
 import Job from './Job'
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
-import { getJobsActionAsync } from '../redux/actions'
+import { getJobsActionAsync, flushJobsAction } from '../redux/actions'
 
 const MainSearch = () => {
   const [query, setQuery] = useState('')
@@ -20,6 +20,12 @@ const MainSearch = () => {
     e.preventDefault()
     dispatch(getJobsActionAsync(query, "search"))
   }
+
+  useEffect(() => {
+    console.log("flushings jobsList...")
+    dispatch(flushJobsAction())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
 
   return (
     <Container>

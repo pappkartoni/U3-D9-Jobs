@@ -1,4 +1,4 @@
-import { GET_JOBS, GET_JOBS_LOAD, GET_JOBS_ERR } from "../actions"
+import { GET_JOBS, GET_JOBS_LOAD, GET_JOBS_ERR, FLUSH_JOBS } from "../actions"
 
 const initialState = {
     jobsList: [],
@@ -19,6 +19,10 @@ const jobsReducer = (state = initialState, action) => {
         case GET_JOBS_ERR:
             return {...state,
                 hasError: action.payload}
+
+        case FLUSH_JOBS:
+            return {...state,
+            jobsList: action.payload}
         default:
             return state
     }
