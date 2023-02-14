@@ -1,7 +1,6 @@
 export const SET_FAVOURITE = "SET_FAVOURITE"
 export const REMOVE_FAVOURITE = "REMOVE_FAVOURITE"
 export const GET_JOBS = "GET_JOBS"
-export const FLUSH_JOBS = "FLUSH_JOBS"
 export const GET_JOBS_LOAD = "GET_JOBS_LOAD"
 export const GET_JOBS_ERR = "GET_JOBS_ERR"
 
@@ -63,6 +62,6 @@ export const getJobsActionAsync = (query, urlParam) => {
 }
 
 export const flushJobsAction = () => ({
-    type: FLUSH_JOBS,
+    type: GET_JOBS,
     payload: []
 })
