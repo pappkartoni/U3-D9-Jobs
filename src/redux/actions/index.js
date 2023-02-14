@@ -1,6 +1,8 @@
 export const SET_FAVOURITE = "SET_FAVOURITE"
 export const REMOVE_FAVOURITE = "REMOVE_FAVOURITE"
 export const GET_JOBS = "GET_JOBS"
+export const GET_JOBS_LOAD = "GET_JOBS_LOAD"
+export const GET_JOBS_ERR = "GET_JOBS_ERR"
 
 export const setFavouriteAction = (company) =>  ({
         type: SET_FAVOURITE,
@@ -24,11 +26,29 @@ export const getJobsActionAsync = (query, urlParam) => {
                     type: GET_JOBS,
                     payload: data
                 })
+                dispatch({
+                    type: GET_JOBS_LOAD,
+                    payload: false
+                })
             } else {
-                alert('Error fetching results')
+                dispatch({
+                    type: GET_JOBS_LOAD,
+                    payload: false
+                })
+                dispatch({
+                    type: GET_JOBS_ERR,
+                    payload: response.status + " " + response.statusText
+                })
             }
         } catch (error) {
-        console.log(error)
+            dispatch({
+                type: GET_JOBS_LOAD,
+                payload: false
+            })
+            dispatch({
+                type: GET_JOBS_ERR,
+                payload: error
+            })
         }
     }
 }
