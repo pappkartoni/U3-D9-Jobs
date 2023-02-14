@@ -21,11 +21,13 @@ const CompanySearchResults = () => {
     <Container>
       <Row>
         <Col>
-          {isLoading && <Spinner animation="grow" variant="info"/>}
-          {errorText.length > 0 && <Alert variant="danger" className="mx-auto">{errorText}</Alert>}
-          {jobs.length > 0 && jobs.map((jobData) => (
-            <Job key={jobData._id} data={jobData} />
-          ))}
+          {isLoading ? <Spinner animation="grow" variant="info"/>
+          : <>
+            {errorText.length > 0 && <Alert variant="danger" className="mx-auto">{errorText}</Alert>}
+            {jobs.length > 0 && jobs.map((jobData) => (
+              <Job key={jobData._id} data={jobData} />
+            ))}     
+          </>}
         </Col>
       </Row>
     </Container>

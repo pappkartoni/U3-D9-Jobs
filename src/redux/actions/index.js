@@ -17,6 +17,15 @@ export const removeFavouriteAction = (company) =>  ({
 
 export const getJobsActionAsync = (query, urlParam) => {
     return async (dispatch, getState) => {
+        dispatch({
+            type: GET_JOBS_LOAD,
+            payload: true
+        })
+        dispatch({
+            type: GET_JOBS_ERR,
+            payload: ""
+        })
+        
         try {
             const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?"
             const response = await fetch(baseEndpoint + urlParam + "=" + query + '&limit=20')
